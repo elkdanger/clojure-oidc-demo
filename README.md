@@ -5,10 +5,8 @@ This is a sample application that demonstrates how to perform a very basic
 
 This sample contains configuration for two authorization servers: [Auth0](https://auth0.com) and Google. You can change between then by altering the configuration on line 18 of `auth.clj`:
 
-```clj
-; Change this between :auth0 and :google to try out the different providers
-(def config (:google configs))
-```
+You can use the radio buttons to change between Google and Auth0
+authorization servers.
 
 Details for the authorization servers are already provided, but try altering them to use your own, or even try to add another OIDC-supported authorization server!
 

@@ -15,7 +15,6 @@
                        :jwks-uri "https://www.googleapis.com/oauth2/v3/certs"
                        :issuer "accounts.google.com"}})
 
-; Change this between :auth0 and :google to try out the different providers
 (def config (atom nil))
 
 (defn build-params
