@@ -8,8 +8,9 @@
    :body (views/html-page "Welcome" (views/welcome))
    :headers {}})
 
-(defn login [request]
-  (redirect (auth/build-url)))
+(defn login [port]
+  (fn [request]
+   (redirect (auth/build-url port))))
 
 (defn request-info
   "View the details about the request"

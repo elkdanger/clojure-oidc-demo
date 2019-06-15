@@ -27,8 +27,8 @@
        (string/join "&")))
 
 (defn build-url
-  []
-  (str (:authz-endpoint config) "?" (build-params {"redirect_uri" "http://localhost:3000/callback"
+  [port]
+  (str (:authz-endpoint config) "?" (build-params {"redirect_uri" (format "http://localhost:%d/callback" port)
                                                    "response_type" "token id_token"
                                                    "response_mode" "form_post"
                                                    "client_id" (:client-id config)

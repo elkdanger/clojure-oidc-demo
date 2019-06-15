@@ -17,11 +17,11 @@
    (link-to {:class "btn btn-primary"} "/login" "Log in to the site")])
 
 (defn not-found []
-  '([:div
-     [:h1 "Page not found"]]))
+  [:div
+   [:h1 "Page not found"]])
 
 (defn unauthorized []
-  `([:h1 "Unauthorized"]))
+  [:h1 "Unauthorized"])
 
 (comment
   (html-page "Example" [:h1 "Page not found"]))
