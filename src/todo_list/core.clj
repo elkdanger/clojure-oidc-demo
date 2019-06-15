@@ -12,7 +12,7 @@
   [port]
   (routes
    (GET "/" [] base-routes/welcome)
-   (GET "/login" [] (base-routes/login port))
+   (POST "/login" [] (base-routes/login port))
    (POST "/callback" [] handle-callback)
    (GET "/request-info" [] base-routes/request-info)
    (not-found (views/html-page "Page not found" (views/not-found)))))

@@ -16,7 +16,7 @@
                        :issuer "accounts.google.com"}})
 
 ; Change this between :auth0 and :google to try out the different providers
-(def config (:google configs))
+(def config (atom nil))
 
 (defn build-params
   [m]
@@ -27,26 +27,27 @@
        (string/join "&")))
 
 (defn build-url
-  [port]
-  (str (:authz-endpoint config) "?" (build-params {"redirect_uri" (format "http://localhost:%d/callback" port)
-                                                   "response_type" "token id_token"
-                                                   "response_mode" "form_post"
-                                                   "client_id" (:client-id config)
-                                                   "scope" "openid email profile"
-                                                   "nonce" "345783923"})))
+  [port auth-type]
+  (reset! config (auth-type configs))
+  (str (:authz-endpoint @config) "?" (build-params {"redirect_uri" (format "http://localhost:%d/callback" port)
+                                                    "response_type" "token id_token"
+                                                    "response_mode" "form_post"
+                                                    "client_id" (:client-id @config)
+                                                    "scope" "openid email profile"
+                                                    "nonce" "345783923"})))
 
 
 (defn invalid-issuer?
   [profile]
-  (not= (-> profile :iss url :host) (:issuer config)))
+  (not= (-> profile :iss url :host) (:issuer @config)))
 
 (defn invalid-audience?
   [profile]
-  (not= (:aud profile) (:client-id config)))
+  (not= (:aud profile) (:client-id @config)))
 
 (defn validate-token
   [id_token]
-  (let [profile (jwt-validate-jwks id_token (:jwks-uri config) "rs256")]
+  (let [profile (jwt-validate-jwks id_token (:jwks-uri @config) "rs256")]
     (cond
       (invalid-issuer? profile) (throw (ex-info "Invalid issuer"))
       (invalid-audience? profile) (throw (ex-info "Invalid audience"))

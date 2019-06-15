@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/data.json "0.2.6"]
                  [ring "1.7.1"]
+                 [ring/ring-anti-forgery "1.3.0"]
                  [compojure "1.3.4"]
                  [hiccup "1.0.5"]
                  [jwt-verify-jwks "1.0.2"]
