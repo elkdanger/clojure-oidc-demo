@@ -24,4 +24,5 @@
   "A very simple web server (development mode)"
   [port-number]
   (jetty/run-jetty (wrap-reload (wrap-params #'app))
-                   {:port (Integer. port-number)}))
+                   {:port (Integer. port-number)
+                    :join? false}))

@@ -14,15 +14,39 @@ Details for the authorization servers are already provided, but try altering the
 
 ## Usage
 
+Both of the methods of starting the demo shown below start it in
+development mode. This means any code you change and save will be hot
+reloaded.
+
+### Running from Lein
 Run the app using Leiningen:
 
 ```sh
-lein run 9000
+lein run 3000
+```
+### In a REPL
+
+Start your REPL, for example:
+
+``` sh
+lein repl
+```
+
+You can then start the server using:
+
+``` sh
+user=> (go)
+```
+
+You can stop the server with:
+
+``` sh
+user=> (stop)
 ```
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Steve Hobbs
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
