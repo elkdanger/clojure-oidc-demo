@@ -8,8 +8,10 @@
    :body (views/html-page "Welcome" (views/welcome))
    :headers {}})
 
-(defn login [request]
-  (redirect (auth/build-url)))
+(defn login [port]
+  (fn [{:keys [form-params]}]
+    (let [auth-type (-> form-params (get "auth-type" "google") keyword)]
+     (redirect (auth/build-url port auth-type)))))
 
 (defn request-info
   "View the details about the request"
